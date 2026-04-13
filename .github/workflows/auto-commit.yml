@@ -1,0 +1,29 @@
+name: Daily Auto Commit
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make a change
+        run: echo "$(date)" >> activity.txt
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "ShreyasiLaha"
+          git config --local user.email "shreyasilaha.it224106@bppimt.ac.in"
+          git add -A
+          git commit -m "Daily update" || echo "No changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
