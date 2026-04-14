@@ -15,15 +15,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Make a change
-        run: echo "$(date)" >> activity.txt
-
-      - name: Commit changes
+      - name: Make 10 commits
         run: |
           git config --local user.name "ShreyasiLaha"
           git config --local user.email "shreyasilaha.it224106@bppimt.ac.in"
-          git add -A
-          git commit -m "Daily update" || echo "No changes"
+          
+          for i in {1..10}; do
+            echo "$(date) - Commit #$i" >> activity_$i.txt
+            git add activity_$i.txt
+            git commit -m "Daily commit #$i - $(date)"
+          done
 
       - name: Push changes
-        run: git push origin main
+        run: git push
