@@ -8,6 +8,8 @@ on:
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -19,7 +21,7 @@ jobs:
       - name: Commit changes
         run: |
           git config --local user.name "ShreyasiLaha"
-          git config --local user.email "ShreyasiLaha@users.noreply.github.com"
+          git config --local user.email "shreyasilaha.it224106@bppimt.ac.in"
           git add -A
           git commit -m "Daily update" || echo "No changes"
 
