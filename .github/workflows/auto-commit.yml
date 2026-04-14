@@ -19,11 +19,9 @@ jobs:
       - name: Commit changes
         run: |
           git config --local user.name "ShreyasiLaha"
-          git config --local user.email "shreyasilaha.it224106@bppimt.ac.in"
+          git config --local user.email "ShreyasiLaha@users.noreply.github.com"
           git add -A
           git commit -m "Daily update" || echo "No changes"
 
       - name: Push changes
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: git push origin main
